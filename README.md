@@ -59,6 +59,8 @@ This will create a serial port `/dev/rfcomm0`, which we can then connect to via 
 ```
 sudo screen /dev/rfcomm0
 ```
+If you get an error that says (screen: command not found), then please install screen with the following: `sudo apt-get install screen`.  Then repeat the command above to run screen.
+
 To exit screen, press `CTRL+A` and then `K` (to kill the screen). You should see a yes/no question appear in the lower left corner, then press `Y` to confirm.
 
 **Step 5: Release the RFCOMM serial ports (and reverse process)**
