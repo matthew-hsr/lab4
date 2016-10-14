@@ -36,13 +36,12 @@ pair 01:02:03:04:05:06
 exit
 ```
 
-We will also need to do this on the host (using the client's address):
+Repeat this process using `sudo bluetoothctl` on the host RPi (using the client's address):
 ```
-sudo bluetoothctl
-  scan on
-  trust 01:02:03:04:05:06
-  pair 01:02:03:04:05:06
-  exit
+scan on
+trust 01:02:03:04:05:06
+pair 01:02:03:04:05:06
+exit
 ```
 
 **Step 3: Setup host RPi using `rfcomm` with `getty`**
@@ -61,6 +60,13 @@ This will create a serial port `/dev/rfcomm0`, which we can then connect to via 
 sudo screen /dev/rfcomm0
 ```
 To exit screen, press `CTRL+A` and then `K` (to kill the screen). You should see a yes/no question appear in the lower left corner, then press `Y` to confirm.
+
+** Step 5: Release the RFCOMM serial ports (and reverse process)**
+Now we can switch the process by reconfiguring the client as a host, and vice versa. To do this, we must first release the `rfcomm0` devices on **both** RPis with the following command:
+```
+sudo rfcomm release 0
+```
+Now you can repeat steps 3 and 4.
 
 # Optional fun: connecting via Bluetooth SPP to a Pi terminal from a Laptop (Mac or PC) or Android Phone (sorry no easy way on iOS)
 
