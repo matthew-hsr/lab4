@@ -28,7 +28,7 @@ sudo hciconfig hci0 piscan && hciconfig
 ```
 Note the BD Address for each RPi. We will need to pair/trust the host address on the client and vice versa. For example, let's say the host address is `01:02:03:04:05:06` and the client address is `0A:0B:0C:0D:0E:0F` for the following example.
 
-After doing this on both systems, we can use `sudo bluetoothctl` to launch the Bluetooth control tool. This will launch the bluetoothctl application. Notice that your bash command prompt has been replace by [bluetooth]#. Now, within this tool, we will need to scan, trust, and pair the devices using the following commands on the client (using the host's address):
+After doing this on both systems, we can use `sudo bluetoothctl` to launch the Bluetooth control tool. This will launch the bluetoothctl application. Notice that your bash command prompt has been replace by *[bluetooth]#*. Now, within this tool, we will need to scan, trust, and pair the devices using the following commands on the client (using the host's address):
 ```
 scan on
 trust 01:02:03:04:05:06
@@ -61,12 +61,19 @@ sudo screen /dev/rfcomm0
 ```
 To exit screen, press `CTRL+A` and then `K` (to kill the screen). You should see a yes/no question appear in the lower left corner, then press `Y` to confirm.
 
-** Step 5: Release the RFCOMM serial ports (and reverse process)**
+**Step 5: Release the RFCOMM serial ports (and reverse process)**
 Now we can switch the process by reconfiguring the client as a host, and vice versa. To do this, we must first release the `rfcomm0` devices on **both** RPis with the following command:
 ```
 sudo rfcomm release 0
 ```
 Now you can repeat steps 3 and 4.
+
+**CLEANUP**
+When we are done, you probably want to untrust and remove the other RPi (for security, if nothing else).  From the commandline, use `sudo bluetoothctl`. Thenn use the `untrust` and `remove` commands together with the other RPi's address (replacing `01:02:03:04:05:06` in this example). 
+```
+untrust 01:02:03:04:05:06
+remove 01:02:03:04:05:06
+```
 
 # Optional fun: connecting via Bluetooth SPP to a Pi terminal from a Laptop (Mac or PC) or Android Phone (sorry no easy way on iOS)
 
