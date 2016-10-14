@@ -69,7 +69,7 @@ sudo rfcomm release 0
 Now you can repeat steps 3 and 4.
 
 **CLEANUP**
-When we are done, you probably want to untrust and remove the other RPi (for security, if nothing else).  From the commandline, use `sudo bluetoothctl`. Thenn use the `untrust` and `remove` commands together with the other RPi's address (replacing `01:02:03:04:05:06` in this example). 
+When we are done, you probably want to untrust and remove the other RPi (for security, if nothing else).  From the commandline, use `sudo bluetoothctl`. Then use the `untrust` and `remove` commands together with the other RPi's address (replacing `01:02:03:04:05:06` in the following example). 
 ```
 untrust 01:02:03:04:05:06
 remove 01:02:03:04:05:06
