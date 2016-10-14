@@ -28,14 +28,14 @@ sudo hciconfig hci0 piscan && hciconfig
 ```
 Note the BD Address for each RPi. We will need to pair/trust the host address on the client and vice versa. For example, let's say the host address is `01:02:03:04:05:06` and the client address is `0A:0B:0C:0D:0E:0F` for the following example.
 
-After doing this on both systems, we can use `sudo bluetoothctl` to launch the Bluetooth control tool. Within this tool, we will need to scan, trust, and pair the devices using the following commands on the client (using the host's address):
+After doing this on both systems, we can use `sudo bluetoothctl` to launch the Bluetooth control tool. This will launch the bluetoothctl application. Notice that your bash command prompt has been replace by [bluetooth]#. Now, within this tool, we will need to scan, trust, and pair the devices using the following commands on the client (using the host's address):
 ```
-sudo bluetoothctl
-  scan on
-  trust 01:02:03:04:05:06
-  pair 01:02:03:04:05:06
-  exit
+scan on
+trust 01:02:03:04:05:06
+pair 01:02:03:04:05:06
+exit
 ```
+
 We will also need to do this on the host (using the client's address):
 ```
 sudo bluetoothctl
@@ -60,7 +60,7 @@ This will create a serial port `/dev/rfcomm0`, which we can then connect to via 
 ```
 sudo screen /dev/rfcomm0
 ```
-
+To exit screen, press `CTRL+A` and then `K` (to kill the screen). You should see a yes/no question appear in the lower left corner, then press `Y` to confirm.
 
 # Optional fun: connecting via Bluetooth SPP to a Pi terminal from a Laptop (Mac or PC) or Android Phone (sorry no easy way on iOS)
 
